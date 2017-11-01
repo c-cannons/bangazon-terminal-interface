@@ -58,9 +58,9 @@ CREATE TABLE `Order_details` (
 
 INSERT INTO Customers VALUES (null, 'Casper', 'Schlobwaffle', '667 Schlobby Lane', 'Butte', 'MT', 59701, 8889067835, '2012-05-05', 1);
 INSERT INTO Customers VALUES (null, 'Joe', 'Schmoe', '56 Hat St.', 'Crown Point', 'IN', 46307, 2196634567, '2013-10-19', 1);
-INSERT INTO Customers VALUES (null, 'Bob', 'Boberson', '1234 Sesame St.', 'New York', 'NY', 10001, 2121234567, '2017-11-11', 1);
+INSERT INTO Customers VALUES (null, 'Bob', 'Boberson', '1234 No Activity Ln.', 'New York', 'NY', 10001, 2121234567, '2017-11-11', 0);
 INSERT INTO Customers VALUES (null, 'Dave', 'Daverson', '500 Interstate Drive', 'Nashville', 'TN', 37222, 6152345678, '2017-01-01', 1);
-INSERT INTO Customers VALUES (null, 'Not', 'Active', '000 Not Active St.', 'Nowhere', 'AK', 23145, 1001001000, '2012-05-05', 0);
+INSERT INTO Customers VALUES (null, 'Mr. Not', 'Active', '000 Not Active St.', 'Nowhere', 'AK', 23145, 1001001000, '2012-05-05', 0);
 
 INSERT INTO Payment_methods VALUES (null, 'Amex', 1234567891234567);
 INSERT INTO Payment_methods VALUES (null, 'Mastercard', 3434567891234567);
