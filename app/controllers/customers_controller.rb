@@ -108,10 +108,32 @@ class CustomerController
   end
 
   def list_customers
-    @customer = Customer.new
-    @customer.get_customers
     puts "*************************************************"
     puts "SELECT CUSTOMER"
+    @customer = Customer.new
+    customer_list = @customer.get_customers
+    customer_list.each do |customer|
+      puts "#{customer[0]}. #{customer[1]} #{customer[2]}"
+    end
+
+    user_input = gets.chomp
+    user_input_int = user_input.to_i
+    if user_input_int > customer_list.length
+      puts "Choose A Customer (pick from the numbers listed, idiot)"
+      list_customers  
+    else
+      customer_list.each do |customer|
+        if user_input == customer[0].to_s
+          puts "you chose #{customer[1]} #{customer[2]}"
+          @active_customer = customer
+        end
+      end
+    end
+
+  end
+
+  def active_customer
+    @active_customer
   end
   
 end

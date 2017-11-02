@@ -28,7 +28,11 @@ class Customer
   end
 
   def get_customers
-    puts "These are the customers"
+    @customers = @db.execute "SELECT customer_id, customer_first_name, customer_last_name FROM Customers"
+    # count = 1
+    # @customers.each do |customer|
+    #    puts "#{count}. #{customer.join(" ")}"
+    #    count += 1
+    # end
   end
-    
 end
