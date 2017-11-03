@@ -1,4 +1,4 @@
-require "/Users/Admin/Desktop/bangazon-terminal-interface/app/models/product.rb"
+require_relative "../../app/models/product.rb"
 
 class ProductsController
 
