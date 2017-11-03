@@ -21,15 +21,5 @@ describe ProductModel do
             expect(new_product).to be_a(Integer)
         end
     end
-
-    context "when calling all customers" do
-        it "should return an array of customers from the database" do
-            customer = ProductModel.new
-            all_customers = customer.get_customers
-            expect(all_customers).to be_an(Array)
-        end
-    end
-
     
-
 end

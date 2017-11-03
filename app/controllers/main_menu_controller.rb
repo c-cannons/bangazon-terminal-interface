@@ -29,7 +29,7 @@ class MainMenuController
       when "1"
         # Call the method that will diplay the prompts for creating a new customer here.
       when "2"
-        @product.list_customers
+        # @product.list_customers
       when "3"
         @product.add_product
       when "4"

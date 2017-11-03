@@ -4,7 +4,7 @@ class ProductsController
 
     # Sets @product to an instance of the class ProductModel
     def initialize(active_customer)
-        @acitve_customer = active_customer
+        @active_customer = active_customer
         @product = ProductModel.new
     end
 
@@ -32,35 +32,35 @@ class ProductsController
     end
 
     # References the `get_customers` method of ProductModel. Takes that data and prints each item to the terminal
-    def list_customers
-        customers = @product.get_customers
-        customers.each do |customer| 
-           puts "#{customer[0]}. #{customer[1]} #{customer[2]}"
-        end
+    # def list_customers
+    #     customers = @product.get_customers
+    #     customers.each do |customer| 
+    #        puts "#{customer[0]}. #{customer[1]} #{customer[2]}"
+    #     end
 
-        puts " "
-        puts "Choose from these #{customers.length} customers."
-        puts " "
+    #     puts " "
+    #     puts "Choose from these #{customers.length} customers."
+    #     puts " "
 
-        user_input = gets.chomp
+    #     user_input = gets.chomp
 
-        # If the user enters a number that's higher than the menu's length, return this statement and revert back to customer menu
-        if user_input.to_i > customers.length
-            puts " "
-            puts "That choice is not on the menu. Please choose a customer on the list."
-            puts " "
-            list_customers
-        else
-            # If the user input matches a customer ID, display the first name (customer[1]) and last_name (customer[2])
-            customers.each do |customer|
-                if user_input == customer[0].to_s
-                    puts " "
-                    puts "You chose #{customer[1]} #{customer[2]}"
-                    puts " "
-                end
-            end
-        end
-    end
+    #     # If the user enters a number that's higher than the menu's length, return this statement and revert back to customer menu
+    #     if user_input.to_i > customers.length
+    #         puts " "
+    #         puts "That choice is not on the menu. Please choose a customer on the list."
+    #         puts " "
+    #         list_customers
+    #     else
+    #         # If the user input matches a customer ID, display the first name (customer[1]) and last_name (customer[2])
+    #         customers.each do |customer|
+    #             if user_input == customer[0].to_s
+    #                 puts " "
+    #                 puts "You chose #{customer[1]} #{customer[2]}"
+    #                 puts " "
+    #             end
+    #         end
+    #     end
+    # end
 end
 
 # product_list = ProductsController.new

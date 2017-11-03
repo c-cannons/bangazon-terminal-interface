@@ -16,11 +16,11 @@ class ProductModel
         @db.execute("INSERT INTO Products VALUES (null, 5, '#{product_name}', '#{product_price}', '#{product_desc}', '#{Date.today}');")
         @last_id = @db.last_insert_row_id
     end
-    
-    # Pulls customer details for all items in the Customers table
-    def get_customers
-        @db.execute("SELECT customer_id, customer_first_name, customer_last_name FROM Customers")
-    end
+
+    # # Pulls customer details for all items in the Customers table
+    # def get_customers
+    #     @db.execute("SELECT customer_id, customer_first_name, customer_last_name FROM Customers")
+    # end
 end
 
 # new_product = ProductModel.new
