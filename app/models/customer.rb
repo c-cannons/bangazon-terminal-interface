@@ -20,6 +20,7 @@ class Customer
     begin 
       @db.execute "INSERT INTO Customers VALUES (null,?,?,?,?,?,?,?,'#{@date}',0);", @first_name, @last_name, @street_address, @city, @state, @postal_code, @phone_number
       
+      @last_id = @db.last_insert_row_id
       puts "Customer #{@first_name} Saved: #{@first_name}, #{@last_name}, #{@street_address}, #{@city}, #{@state}, #{@postal_code}, #{@phone_number}"
     rescue SQLite3::Exception => e
       p "Exeception with database query: #{e}"
