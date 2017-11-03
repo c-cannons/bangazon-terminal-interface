@@ -1,3 +1,5 @@
+require 'sqlite3'
+
 class Customer
   attr_accessor :first_name, :last_name, :street_address, :city, :state, :postal_code, :phone_number
 
@@ -24,7 +26,7 @@ class Customer
       puts "Customer #{@first_name} Saved: #{@first_name}, #{@last_name}, #{@street_address}, #{@city}, #{@state}, #{@postal_code}, #{@phone_number}"
     rescue SQLite3::Exception => e
       p "Exeception with database query: #{e}"
-      db.rollback
+      @db.rollback
     end
   end
 
