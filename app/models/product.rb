@@ -12,16 +12,9 @@ class ProductModel
     end
 
     # Takes input from the user, assigns the input to local variables and inserts it into the Products table
-    def add_product
-        puts "Name of product?"
-        product_name = gets.chomp
-        puts "Price of Product?"
-        product_price = gets.chomp
-        puts "Product description?"
-        product_desc = gets.chomp
-        @db.execute(
-            "INSERT INTO Products VALUES (null, 5, '#{product_name}', '#{product_price}', '#{product_desc}', '#{Date.today}');"
-        )
+    def add_product(product_name, product_price, product_desc)
+        @db.execute("INSERT INTO Products VALUES (null, 5, '#{product_name}', '#{product_price}', '#{product_desc}', '#{Date.today}');")
+        @last_id = @db.last_insert_row_id
     end
     
     # Pulls customer details for all items in the Customers table
@@ -29,6 +22,9 @@ class ProductModel
         @db.execute("SELECT customer_id, customer_first_name, customer_last_name FROM Customers")
     end
 end
+
+# new_product = ProductModel.new
+# new_product.add_product("Jordans", "399.48", "Air Jordans")
 
 # product_list = ProductModel.new
 # product_list.get_products

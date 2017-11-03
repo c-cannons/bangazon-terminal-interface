@@ -3,7 +3,8 @@ require "/Users/Admin/Desktop/bangazon-terminal-interface/app/models/product.rb"
 class ProductsController
 
     # Sets @product to an instance of the class ProductModel
-    def initialize
+    def initialize(active_customer)
+        @acitve_customer = active_customer
         @product = ProductModel.new
     end
 
@@ -15,11 +16,19 @@ class ProductsController
             puts "#{count}. #{product[0]} - #{product[1]}: #{product[2]}"
             count += 1
         end
+        puts " "
+        puts " "
     end
 
     # References the `add_product` method of ProductModel. Takes user input and inserts it to the Products table
     def add_product
-        @product.add_product
+        puts "Name of product?"
+        @product_name = gets.chomp
+        puts "Price of Product?"
+        @product_price = gets.chomp
+        puts "Product description?"
+        @product_desc = gets.chomp
+        @product.add_product(@product_name, @product_price, @product_desc)
     end
 
     # References the `get_customers` method of ProductModel. Takes that data and prints each item to the terminal
