@@ -1,5 +1,7 @@
 class MainMenuController
+  
   attr_accessor :active_customer
+
   def display_main_menu
     # Main menu presented to the user
     puts "    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
@@ -63,7 +65,7 @@ class MainMenuController
       puts ""
       active_customer_menu
     when "3"
-      # Close App
+      puts "Goodbye!"
     end
   end
   
@@ -81,7 +83,7 @@ class MainMenuController
     puts "8. Show customer revenue report"
     puts "9. Show overall product popularity"
     puts "10. Choose new Active Customer"
-    puts "11. Leave Bangazon!"
+    puts "11. Log Out, Back to Main Menu!"
     puts "> "
 
     user_input = gets.chomp
@@ -108,8 +110,8 @@ class MainMenuController
     when "10"
       puts "Choose new Active Customer"
     when "11"
-      # close Bangazon App
-      puts "11. Leave Bangazon!"
+      # Log Out, Back to Main Menu!
+      display_main_menu
     end
   end
 end
