@@ -29,5 +29,5 @@ describe PaymentMethod do
             expect(@account_number).to eq(1000000000000000)
         end
     end
-    
+
 end
