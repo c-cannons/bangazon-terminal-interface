@@ -12,11 +12,14 @@ describe PaymentMethod do
 
     context 'When testing add_payment_method' do
 
-        it "should return an integer from the database" do
+        it "should return an array from the database with the correct information confirming the addition" do
             pm = PaymentMethod.new
-            pay_integer = pm.add_payment_method("Criminal Bank", 1000000000000000)
+            pay_method = pm.add_payment_method("Criminal Bank", 1000000000000000)
 
-            expect(pay_integer).to be_an(Integer)
+            expect(pay_method).to be_an(Array)
+            expect(pay_method[0][0]).to be_an(Integer)
+            expect(pay_method[0][1]).to eq("Criminal Bank")
+            expect(pay_method[0][2]).to eq(1000000000000000)
         end
 
         it "should have arguments of the correct type" do

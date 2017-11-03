@@ -20,4 +20,14 @@ describe PaymentMethodsController do
         end
     end
 
+    # context "When testing add_payment_method" do
+    #     it "adds the payment method to the database and returns it" do
+    #         pmc = PaymentMethodsController.new(1)
+    #         added_payment_method = pmc.add_payment_method
+    #         # puts added_payment_method
+
+    #         # expect(add_payment_method).to be_an(Array)
+    #     end
+    # end
+
 end
