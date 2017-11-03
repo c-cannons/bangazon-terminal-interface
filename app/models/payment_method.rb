@@ -9,7 +9,7 @@ class PaymentMethod
     def list_all_payment_methods
         pay_array = @db.execute "SELECT * FROM Payment_methods;"
         @db.close
-        # p pay_array
+        p pay_array
         return pay_array
     end
 
