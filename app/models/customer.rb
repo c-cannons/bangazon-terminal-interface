@@ -24,8 +24,8 @@ class Customer
       puts "Customer #{@first_name} Saved: #{@first_name}, #{@last_name}, #{@street_address}, #{@city}, #{@state}, #{@postal_code}, #{@phone_number}"
 
       new_id = @db.last_insert_row_id
-      added_customer = @db.execute "SELECT * FROM Payment_methods WHERE pay_method_id = #{new_id};"
-      return added_customer
+      added_customer = @db.execute "SELECT * FROM Customers WHERE customer_id = #{new_id};"
+      return added_customer.flatten
     rescue SQLite3::Exception => e
       p "Exeception with database query: #{e}"
       @db.rollback
