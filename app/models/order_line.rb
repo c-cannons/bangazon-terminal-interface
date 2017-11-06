@@ -6,7 +6,7 @@ class OrderLineModel
 
   # sets the database we want to use
   def initialize
-    @db = SQLite3::Database.open("/Users/hiattcollins/workspace/bangazon/bangazon-terminal-interface/bangazon_cli.db")
+    @db = SQLite3::Database.open(ENV["BANGAZONTI"])
   end
 
   # function to retrieve all individual order lines in the database
