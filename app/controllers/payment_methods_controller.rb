@@ -30,8 +30,4 @@ class PaymentMethodsController
 end
 
 # pmc = PaymentMethodsController.new(1)
-<<<<<<< HEAD
 # pmc.add_payment_method
-=======
-# pmc.add_payment_method
->>>>>>> 0576cdc0a5a2e9de311aa744e8a87a580bf2067f

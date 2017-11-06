@@ -4,11 +4,7 @@ class Customer
   attr_accessor :first_name, :last_name, :street_address, :city, :state, :postal_code, :phone_number
 
   def initialize
-<<<<<<< HEAD
     @db = SQLite3::Database.open(ENV["BANGAZONTI"])
-=======
-    @db = SQLite3::Database.open(ENV["BANGAZONTI"]) 
->>>>>>> 0576cdc0a5a2e9de311aa744e8a87a580bf2067f
   end
 
   def info(firstname, lastname, street_address, city, state, postal_code, phone_number)
@@ -29,7 +25,7 @@ class Customer
 
       @last_id = @db.last_insert_row_id
 =======
-    
+
 >>>>>>> 0576cdc0a5a2e9de311aa744e8a87a580bf2067f
       puts "Customer #{@first_name} Saved: #{@first_name}, #{@last_name}, #{@street_address}, #{@city}, #{@state}, #{@postal_code}, #{@phone_number}"
 
