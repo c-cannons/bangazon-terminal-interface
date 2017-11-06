@@ -17,7 +17,9 @@ class OrderLineModel
     return @db.last_insert_row_id
   end
 
-
+  def delete_order_line(order_detail_id)
+    @db.execute("DELETE FROM Order_details WHERE order_detail_id = #{order_detail_id}")
+  end
 
   def get_order_lines_by_order_id(order_id)
     @order_lines_by_order_id = @db.execute("SELECT * FROM Order_details WHERE order_id = #{order_id}")
