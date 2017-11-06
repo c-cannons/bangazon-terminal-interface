@@ -4,7 +4,7 @@ class Customer
   attr_accessor :first_name, :last_name, :street_address, :city, :state, :postal_code, :phone_number
 
   def initialize
-    @db = SQLite3::Database.open(ENV["BANGAZONTI"]) 
+    @db = SQLite3::Database.open(ENV["BANGAZONTI"])
   end
 
   def info(firstname, lastname, street_address, city, state, postal_code, phone_number)
@@ -19,9 +19,8 @@ class Customer
 
   def save
     @date = Date.today
-    begin 
+    begin
       @db.execute "INSERT INTO Customers VALUES (null,?,?,?,?,?,?,?,'#{@date}',0);", @first_name, @last_name, @street_address, @city, @state, @postal_code, @phone_number
-    
       puts "Customer #{@first_name} Saved: #{@first_name}, #{@last_name}, #{@street_address}, #{@city}, #{@state}, #{@postal_code}, #{@phone_number}"
 
       new_id = @db.last_insert_row_id
@@ -42,5 +41,5 @@ class Customer
   def delete_customer(id)
     @db.execute "DELETE FROM Customers WHERE customer_id = #{id};"
     @db.close
-end
+  end
 end
