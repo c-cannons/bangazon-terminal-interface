@@ -61,4 +61,3 @@ describe ".add_product - unit" do
     end
 end
 
-end
