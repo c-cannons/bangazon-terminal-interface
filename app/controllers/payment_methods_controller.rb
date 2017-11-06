@@ -1,6 +1,8 @@
-require './app/models/payment_method.rb'
+require_relative '../models/payment_method.rb'
 
 class PaymentMethodsController
+
+    attr_accessor :active_customer
     # sets @payment_method variable as a new instance of PaymentMethod
     def initialize(active_customer)
         @active_customer = active_customer
