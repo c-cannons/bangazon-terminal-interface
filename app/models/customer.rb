@@ -4,7 +4,7 @@ class Customer
   attr_accessor :first_name, :last_name, :street_address, :city, :state, :postal_code, :phone_number
 
   def initialize
-    @db = SQLite3::Database.open("/Users/ericpalmieri/workspace/bangazon-c-cannons/bangazon-terminal-interface/bangazon_cli.db") 
+    @db = SQLite3::Database.open("../../bangazon-terminal-interface/bangazon_cli.db") 
   end
 
   def info(firstname, lastname, street_address, city, state, postal_code, phone_number)
