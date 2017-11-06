@@ -28,3 +28,6 @@ class PaymentMethodsController
     end
 
 end
+
+# pmc = PaymentMethodsController.new(1)
+# pmc.add_payment_method
