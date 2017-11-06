@@ -3,7 +3,7 @@ require 'sqlite3'
 class PaymentMethod
 
     def initialize
-        @db = SQLite3::Database.open('bangazon_cli.db')
+        @db = SQLite3::Database.open(ENV["BANGAZONTI"])
     end
 
     def list_all_payment_methods

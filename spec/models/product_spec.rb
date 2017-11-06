@@ -1,4 +1,4 @@
-require_relative "../../app/models/product.rb"
+require_relative "../../app/models/product"
 
 describe ProductModel do
 
