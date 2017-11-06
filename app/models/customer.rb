@@ -4,7 +4,7 @@ class Customer
   attr_accessor :first_name, :last_name, :street_address, :city, :state, :postal_code, :phone_number
 
   def initialize
-    @db = SQLite3::Database.open("/Users/ericpalmieri/workspace/bangazon-c-cannons/bangazon-terminal-interface/bangazon_cli.db") 
+    @db = SQLite3::Database.open(ENV["BANGAZONTI"])
   end
 
   def info(firstname, lastname, street_address, city, state, postal_code, phone_number)
@@ -19,9 +19,9 @@ class Customer
 
   def save
     @date = Date.today
-    begin 
+    begin
       @db.execute "INSERT INTO Customers VALUES (null,?,?,?,?,?,?,?,'#{@date}',0);", @first_name, @last_name, @street_address, @city, @state, @postal_code, @phone_number
-      
+
       @last_id = @db.last_insert_row_id
       puts "Customer #{@first_name} Saved: #{@first_name}, #{@last_name}, #{@street_address}, #{@city}, #{@state}, #{@postal_code}, #{@phone_number}"
     rescue SQLite3::Exception => e
