@@ -2,8 +2,10 @@ require_relative "../models/product"
 
 class ProductsController
 
+  attr_accessor :active_customer
+
     # Sets @product to an instance of the class ProductModel
-    def initialize(active_customer)
+    def initialize
         @active_customer = active_customer
         @product = ProductModel.new
     end
@@ -12,8 +14,8 @@ class ProductsController
     def get_all_products
        products = @product.get_products
         count = 1
-        products.each do |product| 
-            puts "#{count}. #{product[0]} - #{product[1]}: #{product[2]}"
+        products.each do |product|
+            puts "#{count}. #{product[2]} - $#{product[3]}: #{product[4]}"
             count += 1
         end
         puts " "
@@ -31,38 +33,33 @@ class ProductsController
         @product.add_product(@product_name, @product_price, @product_desc)
     end
 
-    # References the `get_customers` method of ProductModel. Takes that data and prints each item to the terminal
-    # def list_customers
-    #     customers = @product.get_customers
-    #     customers.each do |customer| 
-    #        puts "#{customer[0]}. #{customer[1]} #{customer[2]}"
-    #     end
+    def add_to_cart
+      print "Choose an item: "
+      user_input = gets.chomp
+      @product_arr = @product.get_products
+      puts @product_arr.length
+      # p @product_arr
+      @product_arr.each do |product|
+        if user_input == product[0].to_s
+          puts "You chose #{product[2]}"
+          puts "This product is $#{product[3]}. Would you like to add to your cart? (Y/N)"
+        end
+      end
+      next_user_input = gets.chomp
+      case next_user_input.downcase
+      when "y"
+      puts "Added to cart!"
+      when "n"
+        puts " "
+        puts "Something else maybe?"
+        get_all_products
+      end
+    end
 
-    #     puts " "
-    #     puts "Choose from these #{customers.length} customers."
-    #     puts " "
 
-    #     user_input = gets.chomp
-
-    #     # If the user enters a number that's higher than the menu's length, return this statement and revert back to customer menu
-    #     if user_input.to_i > customers.length
-    #         puts " "
-    #         puts "That choice is not on the menu. Please choose a customer on the list."
-    #         puts " "
-    #         list_customers
-    #     else
-    #         # If the user input matches a customer ID, display the first name (customer[1]) and last_name (customer[2])
-    #         customers.each do |customer|
-    #             if user_input == customer[0].to_s
-    #                 puts " "
-    #                 puts "You chose #{customer[1]} #{customer[2]}"
-    #                 puts " "
-    #             end
-    #         end
-    #     end
-    # end
 end
 
-# product_list = ProductsController.new
-# product_list.get_all_products
+product_list = ProductsController.new
+product_list.get_all_products
 # product_list.add_product
+product_list.add_to_cart

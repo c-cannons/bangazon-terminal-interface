@@ -8,8 +8,8 @@ class ProductModel
 
     # Pulls product details for all items in the Products table
     def get_products
-        products_arr = @db.execute("SELECT product_name, product_price, product_desc FROM Products;")
-        @db.close
+        products_arr = @db.execute("SELECT product_id, customer_id, product_name, product_price, product_desc FROM Products;")
+        # @db.close
         return products_arr
     end
 
