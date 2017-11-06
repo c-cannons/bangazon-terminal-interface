@@ -17,9 +17,16 @@ class OrderLineModel
     return @db.last_insert_row_id
   end
 
+
+
   def get_order_lines_by_order_id(order_id)
     @order_lines_by_order_id = @db.execute("SELECT * FROM Order_details WHERE order_id = #{order_id}")
     return @order_lines_by_order_id
+  end
+
+  def get_order_lines_by_product_id(product_id)
+    @order_lines_by_product_id = @db.execute("SELECT * FROM Order_details WHERE product_id = #{product_id}")
+    return @order_lines_by_product_id
   end
 
 end

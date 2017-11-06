@@ -15,6 +15,8 @@ describe OrderLineModel do
 
 
   describe "#add_order_line" do
+
+    # ***** The order line number needs to be set to an order that does not yet exist *****
     # context "before new order line is added to db" do
     #   it "checks to make sure the order line does not already exist" do
     #     order_lines = OrderLineModel.new
@@ -24,6 +26,8 @@ describe OrderLineModel do
     #       expect(check_for_order).to eql([])
     #   end
     # end
+
+
     context "when new order line posted to the db" do
       it "successfully adds the order line to the db" do
         order_lines = OrderLineModel.new
@@ -36,13 +40,30 @@ describe OrderLineModel do
     end
   end
 
+  describe "#delete_order_line" do
+    context "when order line deleted by order line id" do
+      it "successfully deletes the order line corresponding to the id submitted" do
+
+      end
+    end
+  end
 
   describe "#get_order_lines_by_order_id" do
     context "when order lines searched by order id" do
       it "returns only those order lines with that order id" do
         order_lines = OrderLineModel.new
-        order_lines_by_id = order_lines.get_order_lines_by_order_id(@order_id = 4)
-        p order_lines_by_id
+        order_lines_by_order_id = order_lines.get_order_lines_by_order_id(@order_id = 4)
+        p order_lines_by_order_id
+      end
+    end
+  end
+
+  describe "get_order_lines_by_product_id" do
+    context "when order lines searched by product id" do
+      it "returns only those order lines with that product id" do
+        order_lines = OrderLineModel.new
+        order_lines_by_product_id = order_lines.get_order_lines_by_product_id(@product_id = 2)
+        p order_lines_by_product_id
       end
     end
   end
