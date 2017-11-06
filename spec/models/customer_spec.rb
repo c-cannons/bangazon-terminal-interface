@@ -57,7 +57,8 @@ describe Customer do
 
       @customer.info(@firstname, @lastname, @street_address, @city, @state, @postal_code, @phone_number)
       #save method
-      id_1 = @customer.save.flatten[0]
+      customer_arr = @customer.save
+      id_1 = customer_arr[0]
     end
     it "Check the array of Customers to make sure 'Test Customer' is included" do
       setup
@@ -66,18 +67,22 @@ describe Customer do
     end
   end
 
-  it "should remove the example entries" do
-    setup
-    @customer.delete_customer(id_1)
+  context "delete customers" do
+    it "should remove the example entries" do
+      setup
+      @customer.delete_customer(id_1.to_i)
+    end
   end
 
   context "When listing customers" do
-    setup
-    customers = @customer.get_customers
     it "Should make a call to database" do
+      setup
+      customers = @customer.get_customers
       expect(customers).to be_an(Array)
     end
     it "Should return data as an array of arrays" do
+      setup
+      customers = @customer.get_customers
       expect(customers).to be_an(Array)
     end
   end
