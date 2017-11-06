@@ -7,7 +7,7 @@ require_relative 'models/customer'
 require_relative 'models/product'
 require_relative 'models/order'
 require_relative 'models/order_line'
-require_relative 'models/payment_type'
+require_relative 'models/payment_method'
 
 
 @main_menu = MainMenuController.new

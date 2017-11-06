@@ -113,25 +113,30 @@ class CustomerController
     @customer = Customer.new
     customer_list = @customer.get_customers
     customer_list.each do |customer|
-      puts "#{customer[0]}. #{customer[1]} #{customer[2]}"
+      puts "##{customer[0]} - #{customer[1]} #{customer[2]}"
     end
-
+    # Gets User Input to Select Active Customer
     user_input = gets.chomp
-    user_input_int = user_input.to_i
-    if user_input_int > customer_list.length
-      puts "Choose A Customer (pick from the numbers listed, idiot)"
-      list_customers  
-    else
+    #Loop Through Customer List and If User Input Matches Customer Id, set customer as Active Customer
+    customer_list.each do |customer|
+      if user_input == customer[0].to_s
+        puts "you chose #{customer[1]} #{customer[2]}"
+        @active_customer = customer
+        break
+      end
+    end
+    #Loop Through Customer List and If User Input does not match Customer Id, ask for input again
+    unless @active_customer != nil
       customer_list.each do |customer|
-        if user_input == customer[0].to_s
-          puts "you chose #{customer[1]} #{customer[2]}"
-          @active_customer = customer
+        if user_input != customer[0].to_s
+          puts "Choose A Customer (pick from the numbers listed, idiot)"
+          list_customers
+          break
         end
       end
     end
-
   end
-
+  #Allows for MainMenuController to call for @active_customer at any time
   def active_customer
     @active_customer
   end
