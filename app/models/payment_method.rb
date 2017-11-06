@@ -16,9 +16,14 @@ class PaymentMethod
     def add_payment_method(payment_type, account_number)
         @db.execute "INSERT INTO Payment_methods VALUES (null, '#{payment_type}', #{account_number});"
         new_id = @db.last_insert_row_id
+        added_pay_method = @db.execute "SELECT * FROM Payment_methods WHERE pay_method_id = #{new_id};"
+        # p added_pay_method
         @db.close
-        # p new_id
-        return new_id
+        return added_pay_method
     end
 
+    def delete_pay_method(id)
+        @db.execute "DELETE FROM Payment_methods WHERE pay_method_id = #{id};"
+        @db.close
+    end
 end
