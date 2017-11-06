@@ -5,6 +5,10 @@
 ### Installation Instructions
 1. Fork and/or clone this repo.
 1. Run bundle install to install the necessary gems.
+1. Add Database path to your `.[shell]rc` file
+
+  2. If using zshell, open `.zshrc` file and add `export BANGAZONTI="[complete path to database]"` with the complete path to database file
+  2. run `source ~/.zhsrc` to update zshell
 
 #### To run the test suite
 * Run `bundle exec rspec`
