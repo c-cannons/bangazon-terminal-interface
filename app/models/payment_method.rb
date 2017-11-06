@@ -2,10 +2,12 @@ require 'sqlite3'
 
 class PaymentMethod
 
+    # sets the database we want to use
     def initialize
         @db = SQLite3::Database.open(ENV["BANGAZONTI"])
     end
 
+    #
     def list_all_payment_methods
         pay_array = @db.execute "SELECT * FROM Payment_methods;"
         @db.close
