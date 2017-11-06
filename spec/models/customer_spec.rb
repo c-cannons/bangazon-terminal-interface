@@ -70,4 +70,15 @@ describe Customer do
     setup
     @customer.delete_customer(id_1)
   end
+
+  context "When listing customers" do
+    setup
+    customers = @customer.get_customers
+    it "Should make a call to database" do
+      expect(customers).to be_an(Array)
+    end
+    it "Should return data as an array of arrays" do
+      expect(customers).to be_an(Array)
+    end
+  end
 end
