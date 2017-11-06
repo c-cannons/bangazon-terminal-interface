@@ -8,7 +8,6 @@ describe "initialize" do
             expect(@pmc.active_customer).to eq(1)
         end
     end
-  end
 end
 
 describe "initialize" do
@@ -18,7 +17,6 @@ describe "initialize" do
             expect(@pmc).to be_an_instance_of(PaymentMethodsController)
         end
     end
-  end
 end
 
 describe "get_all_payment_methods" do
@@ -29,5 +27,4 @@ describe "get_all_payment_methods" do
             expect(array).to be_an(Array)
         end
     end
-  end
 end
