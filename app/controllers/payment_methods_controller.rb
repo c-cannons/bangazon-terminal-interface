@@ -21,12 +21,14 @@ class PaymentMethodsController
     end
 
     def add_payment_method
+        @active_customer = active_customer[0]
+        puts @active_customer
         puts "Name of Payment Method?"
         @payment_type = gets.chomp
         puts "Account Number?"
         @account_number = gets.chomp
-        added_method = @payment_method.add_payment_method(@payment_type, @account_number)
-        print "Added '#{added_method[0][1]}' Account#: #{added_method[0][2]}"
+        added_method = @payment_method.add_payment_method(@active_customer, @payment_type, @account_number)
+        print "Added '#{added_method[0][2]}' Account#: #{added_method[0][3]} for Customer ID: #{added_method[0][1]}"
     end
 
 end
