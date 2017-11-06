@@ -14,7 +14,7 @@ class ProductModel
     # Takes input from the user, assigns the input to local variables and inserts it into the Products table
     def add_product(product_name, product_price, product_desc)
         @db.execute("INSERT INTO Products VALUES (null, 5, '#{product_name}', '#{product_price}', '#{product_desc}', '#{Date.today}');")
-        @last_id = @db.last_insert_row_id
+        @db.last_insert_row_id
     end
 
     # # Pulls customer details for all items in the Customers table
