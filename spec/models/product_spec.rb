@@ -1,4 +1,4 @@
-require_relative "../../app/models/product.rb"
+require_relative "../../app/models/product"
 
 # variables that will store id integers of the example entries so they can be idetified and deleted
 id_1 = 0
@@ -61,3 +61,4 @@ describe ".add_product - unit" do
     end
 end
 
+end

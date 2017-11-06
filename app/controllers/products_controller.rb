@@ -1,4 +1,4 @@
-require_relative "../../app/models/product.rb"
+require_relative "../models/product"
 
 class ProductsController
 
