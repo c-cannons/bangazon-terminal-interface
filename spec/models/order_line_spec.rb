@@ -1,4 +1,4 @@
-require "/Users/hiattcollins/workspace/bangazon/bangazon-terminal-interface/app/models/order_line.rb"
+require_relative "../../app/models/order_line.rb"
 
 describe OrderLineModel do
 
@@ -17,15 +17,15 @@ describe OrderLineModel do
   describe "#add_order_line" do
 
     # ***** The order line number needs to be set to an order that does not yet exist *****
-    # context "before new order line is added to db" do
-    #   it "checks to make sure the order line does not already exist" do
-    #     order_lines = OrderLineModel.new
-    #     @db = SQLite3::Database.open("/Users/hiattcollins/workspace/bangazon/bangazon-terminal-interface/bangazon_cli.db")
-    #     check_for_order = @db.execute("SELECT * FROM Order_details WHERE order_detail_id = 11")
-    #     p check_for_order
-    #       expect(check_for_order).to eql([])
-    #   end
-    # end
+    context "before new order line is added to db" do
+      it "checks to make sure the order line does not already exist" do
+        order_lines = OrderLineModel.new
+        @db = SQLite3::Database.open("../../bangazon_cli.db")
+        check_for_order = @db.execute("SELECT * FROM Order_details WHERE order_detail_id = 23")
+        p check_for_order
+          expect(check_for_order).to eql([])
+      end
+    end
 
 
     context "when new order line posted to the db" do
@@ -40,10 +40,16 @@ describe OrderLineModel do
     end
   end
 
+  # ***** The order line number needs to be set to the order created above *****
   describe "#delete_order_line" do
     context "when order line deleted by order line id" do
       it "successfully deletes the order line corresponding to the id submitted" do
-
+        order_lines = OrderLineModel.new
+        order_lines.delete_order_line(23)
+        @db = SQLite3::Database.open("../../bangazon_cli.db")
+        check_for_line = @db.execute("SELECT * FROM Order_details WHERE order_detail_id = 23")
+        p check_for_line
+          expect(check_for_line).to eql([])
       end
     end
   end
@@ -53,6 +59,7 @@ describe OrderLineModel do
       it "returns only those order lines with that order id" do
         order_lines = OrderLineModel.new
         order_lines_by_order_id = order_lines.get_order_lines_by_order_id(@order_id = 4)
+        expect(order_lines_by_order_id[0][2]).to eql(4)
         p order_lines_by_order_id
       end
     end
@@ -63,6 +70,7 @@ describe OrderLineModel do
       it "returns only those order lines with that product id" do
         order_lines = OrderLineModel.new
         order_lines_by_product_id = order_lines.get_order_lines_by_product_id(@product_id = 2)
+        expect(order_lines_by_product_id[0][1]).to eql(2)
         p order_lines_by_product_id
       end
     end
