@@ -1,4 +1,4 @@
-require "/Users/Admin/Desktop/bangazon-terminal-interface/app/models/product.rb"
+require_relative "../../app/models/product"
 
 describe ProductModel do
 
@@ -21,5 +21,5 @@ describe ProductModel do
             expect(new_product).to be_a(Integer)
         end
     end
-    
+
 end

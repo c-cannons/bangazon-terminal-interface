@@ -5,7 +5,7 @@ describe PaymentMethod do
     def setup
         @pm = PaymentMethod.new
     end
-    # variables that will store id integers of the example entries so they can be idetified and deleted
+    # variables that will store id integers of the example entries so they can be identified and deleted
     id_1 = 0
     id_2 = 0
 
@@ -28,7 +28,7 @@ describe PaymentMethod do
         it "adds a product and check that the fields are correct" do
             setup
             pay_method = @pm.add_payment_method("Criminal Bank", 1000000000000000)
-            
+
             expect(pay_method).to be_an(Array)
             expect(pay_method.flatten[0]).to be_an(Integer)
             expect(pay_method.flatten[1]).to eq("Criminal Bank")
@@ -62,5 +62,5 @@ describe PaymentMethod do
             @pm.delete_pay_method(id_2)
         end
     end
-    
+
 end

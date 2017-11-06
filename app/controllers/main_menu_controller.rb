@@ -117,6 +117,8 @@ class MainMenuController
         puts "Show overall product popularity"
       when "10"
         puts "Choose new Active Customer"
+        @active_customer = []
+        break
       when "11"
         # Log Out, Back to Main Menu!
         @active_customer = []

@@ -3,7 +3,7 @@ require 'sqlite3'
 class ProductModel
     # Sets the current database that we want to interact with
     def initialize
-        @db = SQLite3::Database.open("/Users/Admin/Desktop/bangazon-terminal-interface/bangazon_cli.db")
+        @db = SQLite3::Database.open(ENV["BANGAZONTI"])
     end
 
     # Pulls product details for all items in the Products table
