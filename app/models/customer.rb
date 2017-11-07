@@ -43,6 +43,7 @@ class Customer
     @db.close
     return @customers
   end
+
   # Allow Test Suite to delete a Customer
   def delete_customer(id)
     @db.execute "DELETE FROM Customers WHERE customer_id = #{id};"
