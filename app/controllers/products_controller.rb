@@ -34,18 +34,6 @@ class ProductsController
         @product.add_product(@active_customer, @product_name, @product_price, @product_desc)
     end
 
-    def show_products_by_customer(active_customer)
-      @product_arr = @product.get_products_by_customer(active_customer)
-      p @product_arr
-      count = 1
-      @product_arr.each do |product|
-          puts "#{count}. #{product[2]} - $#{product[3]}: #{product[4]}"
-          count += 1
-      end
-      puts " "
-      puts " "
-    end
-
     def delete_customer_product
       @product_arr = @product.get_products_by_customer(@active_customer[0])
       puts "Choose an item to delete"
