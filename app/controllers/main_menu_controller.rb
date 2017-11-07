@@ -2,7 +2,7 @@ require_relative 'products_controller'
 require_relative 'payment_methods_controller'
 
 class MainMenuController
-  
+
   # :active_customer is an array [customer_id, first_name, last_name]
   attr_accessor :active_customer
 
@@ -77,7 +77,7 @@ class MainMenuController
       end
     end
   end
-  
+
   #Active customer menu  -- pass @active_customer to any instance controller called from here
   def active_customer_menu
     loop do
@@ -107,12 +107,18 @@ class MainMenuController
         active_customer_menu
       when "2"
         puts "Add product to sell"
+        @products = ProductsController.new(@active_customer)
+        @products.add_product
       when "3"
         puts "Add product to shopping cart"
+        @cart = ProductsController.new(@active_customer)
+        @cart.get_all_products
       when "4"
         puts "Complete an order"
       when "5"
         puts "Remove customer product"
+        @delete = ProductsController.new(@active_customer)
+        @delete.delete_customer_product
       when "6"
         puts "Update product information"
       when "7"
