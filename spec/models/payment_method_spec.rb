@@ -30,12 +30,13 @@ describe "add_payment_method" do
   context "when called" do
     it "adds a product and verifies the field types and values" do
       setup
-      pay_method = @pm.add_payment_method("Criminal Bank", 1000000000000000)
+      pay_method = @pm.add_payment_method(1, "Criminal Bank", 1000000000000000)
 
       expect(pay_method).to be_an(Array)
       expect(pay_method.flatten[0]).to be_an(Integer)
-      expect(pay_method.flatten[1]).to eq("Criminal Bank")
-      expect(pay_method.flatten[2]).to eq(1000000000000000)
+      expect(pay_method.flatten[1]).to eq(1)
+      expect(pay_method.flatten[2]).to eq("Criminal Bank")
+      expect(pay_method.flatten[3]).to eq(1000000000000000)
       #sets test_id_1 to delete this example record at the end of the tests
       test_id_1 = pay_method.flatten[0]
     end
@@ -60,18 +61,3 @@ describe "delete test entry" do
         end
     end
 end
-
-
-
-
-
-
-
-
-
-#     it "should remove the example entries" do
-
-#     end
-# end
-
-# end
