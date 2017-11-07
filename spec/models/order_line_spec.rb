@@ -20,7 +20,7 @@ describe OrderLineModel do
     context "before new order line is added to db" do
       it "checks to make sure the order line does not already exist" do
         order_lines = OrderLineModel.new
-        @db = SQLite3::Database.open("../../bangazon_cli.db")
+        @db = SQLite3::Database.open(ENV["BANGAZONTI"])
         check_for_order = @db.execute("SELECT * FROM Order_details WHERE order_detail_id = 23")
         p check_for_order
           expect(check_for_order).to eql([])
@@ -46,7 +46,7 @@ describe OrderLineModel do
       it "successfully deletes the order line corresponding to the id submitted" do
         order_lines = OrderLineModel.new
         order_lines.delete_order_line(23)
-        @db = SQLite3::Database.open("../../bangazon_cli.db")
+        @db = SQLite3::Database.open(ENV["BANGAZONTI"])
         check_for_line = @db.execute("SELECT * FROM Order_details WHERE order_detail_id = 23")
         p check_for_line
           expect(check_for_line).to eql([])
