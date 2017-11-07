@@ -2,9 +2,9 @@ require_relative 'products_controller'
 require_relative 'payment_methods_controller'
 
 class MainMenuController
-  
+
   # :active_customer is an array [customer_id, first_name, last_name]
-  attr_accessor :active_customer
+  attr_accessor :active_customer, :active_order
 
   def display_main_menu
     loop do
@@ -77,7 +77,7 @@ class MainMenuController
       end
     end
   end
-  
+
   #Active customer menu  -- pass @active_customer to any instance controller called from here
   def active_customer_menu
     loop do
@@ -90,9 +90,9 @@ class MainMenuController
       puts "4. Complete an order"
       puts "5. Remove customer product"
       puts "6. Update product information"
-      puts "7. Show stale products"
-      puts "8. Show customer revenue report"
-      puts "9. Show overall product popularity"
+      puts "7. Show stale products - COMING SOON"
+      puts "8. Show customer revenue report - COMING SOON"
+      puts "9. Show overall product popularity - COMING SOON"
       puts "10. Choose new Active Customer"
       puts "11. Log Out, Back to Main Menu!"
       puts "> "
@@ -116,11 +116,11 @@ class MainMenuController
       when "6"
         puts "Update product information"
       when "7"
-        puts "Show stale products"
+        puts "Show stale products - COMING SOON"
       when "8"
-        puts "Show customer revenue report"
+        puts "Show customer revenue report - COMING SOON"
       when "9"
-        puts "Show overall product popularity"
+        puts "Show overall product popularity - COMING SOON"
       when "10"
         puts "Choose new Active Customer"
         @active_customer = []

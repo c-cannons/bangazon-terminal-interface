@@ -1,5 +1,7 @@
 class CustomerController
   attr_accessor :first_name, :last_name, :street_address, :city, :state, :postal_code, :phone_number
+
+  # Gets User input for all fields
   def add_new_customer
     puts "*************************************************"
     puts "ADD A NEW CUSTOMER"
@@ -17,27 +19,27 @@ class CustomerController
     puts ">"
     user_input = gets.chomp
     @street_address = user_input
-    
+
     puts "Enter City"
     puts ">"
     user_input = gets.chomp
     @city = user_input
-    
+
     puts "Enter State (use state abbreviation)"
     puts ">"
     user_input = gets.chomp
     @state = user_input
-    
+
     puts "Enter Postal Code"
     puts ">"
     user_input = Integer(gets.chomp)
     @postal_code = user_input
-    
+
     puts "Enter Phone Number"
     puts ">"
     user_input = Integer(gets.chomp)
     @phone_number = user_input
-
+    # Check if user wants to save info or Edit info
     puts "Press any key if this Customer Info is Correct.  Type n if this Customer Info needs corrections"
     user_input = gets.chomp
     case user_input
@@ -50,6 +52,7 @@ class CustomerController
     end
   end
 
+  # Edit User Input Before Pushing to DB
   def edit_customer
     puts "*************************************************"
     puts "EDIT NEW CUSTOMER"
@@ -70,31 +73,31 @@ class CustomerController
     puts ">"
     user_input = gets.chomp
     @street_address = user_input
-    
+
     puts "Edit City"
     puts "#{@city}"
     puts ">"
     user_input = gets.chomp
     @city = user_input
-    
+
     puts "Edit State (use state abbreviation)"
     puts "#{@state}"
     puts ">"
     user_input = gets.chomp
     @state = user_input
-    
+
     puts "Edit Postal Code"
     puts "#{@postal_code}"
     puts ">"
     user_input = Integer(gets.chomp)
     @postal_code = user_input
-    
+
     puts "Edit Phone Number"
     puts "#{@phone_number}"
     puts ">"
     user_input = Integer(gets.chomp)
     @phone_number = user_input
-
+    # Check if user wants to save info or Edit info
     puts "Press any key if this Customer Info is Correct.  Type N if this Customer Info needs corrections"
     user_input = gets.chomp
     case user_input
@@ -107,6 +110,7 @@ class CustomerController
     end
   end
 
+  # List all Customers in Array
   def list_customers
     puts "*************************************************"
     puts "SELECT CUSTOMER"
@@ -136,9 +140,10 @@ class CustomerController
       end
     end
   end
+
   #Allows for MainMenuController to call for @active_customer at any time
   def active_customer
     @active_customer
   end
-  
+
 end
