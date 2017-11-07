@@ -34,6 +34,43 @@ class ProductsController
         @product.add_product(@active_customer, @product_name, @product_price, @product_desc)
     end
 
+
+
+    def update_product
+      @product_arr = @product.get_products_by_customer(@active_customer[0])
+      puts "Which item would you like to update?"
+      count = 1
+      @product_hash = Hash.new
+      @product_arr.each do |product|
+          puts "#{count}. #{product[2]}"
+          @product_hash[count] = product
+          count += 1
+      end
+
+      puts " "
+      user_input = gets.chomp
+      @product_hash.each do |key, val|
+        if user_input.to_s == key.to_s
+          # puts "Do you want to update #{val[2]}? (Y/N)"
+          # next_user_input = gets.chomp
+          # if next_user_input.downcase.to_s == "y"
+            # @product.delete_product(@product_hash[key][0])
+            puts val
+            # prod_array = @product.get_product_by_id(val[0])
+            # puts prod_array
+            @product_id = val[0]
+            puts "The current Product Name is '#{val[2]}'.  What would you like the new Product Name to be?"
+            @product_name = gets.chomp
+            puts "The current Product Price is '#{val[3]}'.  What would you like the new Product Price to be?"
+            @product_price = gets.chomp
+            puts puts "The current Product Description is '#{val[4]}'.  What would you like the new Product Description to be?"
+            @product_desc = gets.chomp
+            @product.update_product(@product_id, @active_customer, @product_name, @product_price.to_f, @product_desc)
+          # end
+        end
+      end
+    end
+
     def delete_customer_product
       @product_arr = @product.get_products_by_customer(@active_customer[0])
       puts "Choose an item to delete"
