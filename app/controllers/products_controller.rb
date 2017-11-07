@@ -24,7 +24,7 @@ class ProductsController
 
     # References the `add_product` method of ProductModel. Takes user input and inserts it to the Products table
     def add_product
-      @active_customer = active_customer[0]
+        @active_customer = active_customer[0]
         puts "Name of product?"
         @product_name = gets.chomp
         puts "Price of Product?"

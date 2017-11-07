@@ -25,7 +25,7 @@ describe ".add_product - integration" do
         end
         it "adds 'Shoes' to Products table" do
             product = ProductModel.new
-            new_product = product.add_product(@product_name = "Shoes", @product_price = 9.99, @product_desc = "Nice shoes")
+            new_product = product.add_product(@active_customer = 1, @product_name = "Shoes", @product_price = 9.99, @product_desc = "Nice shoes")
             id_1 = new_product.flatten[0]
         end
         it "checks Products table again for 'Shoes" do
@@ -46,7 +46,7 @@ describe ".add_product - unit" do
     context "when called" do
         it "takes arguments for product name, price and description" do
             product = ProductModel.new
-            new_product = product.add_product(@product_name = "Shoes", @customer_id = 1, @product_price = 9.99, @product_desc = "Nice shoes")
+            new_product = product.add_product(@active_customer = 1, @product_name = "Shoes", @product_price = 9.99, @product_desc = "Nice shoes")
             expect(@product_name).to be_an(String)
             expect(@product_price).to be_a(Float)
             expect(@product_desc).to be_a(String)
