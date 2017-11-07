@@ -14,8 +14,8 @@ class PaymentMethod
         return pay_array
     end
 
-    def add_payment_method(payment_type, account_number)
-        @db.execute "INSERT INTO Payment_methods VALUES (null, '#{payment_type}', #{account_number});"
+    def add_payment_method(customer_id, payment_type, account_number)
+        @db.execute "INSERT INTO Payment_methods VALUES (null, #{customer_id}, '#{payment_type}', #{account_number});"
         new_id = @db.last_insert_row_id
         added_pay_method = @db.execute "SELECT * FROM Payment_methods WHERE pay_method_id = #{new_id};"
         @db.close

@@ -1,9 +1,5 @@
 require_relative '../../app/controllers/payment_methods_controller.rb'
 
-def setup
-    @pmc = PaymentMethodsController.new(@active_customer = 1)
-end
-
 describe "initialize" do
     context "when called" do
         it "has a valid active_customer" do

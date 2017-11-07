@@ -1,4 +1,5 @@
 require_relative 'products_controller'
+require_relative 'payment_methods_controller'
 
 class MainMenuController
   
@@ -100,7 +101,10 @@ class MainMenuController
 
       case user_input
       when "1"
-        puts "Create a payment option"
+        @new_payment_method = PaymentMethodsController.new(@active_customer)
+        @new_payment_method.add_payment_method
+        puts""
+        active_customer_menu
       when "2"
         puts "Add product to sell"
       when "3"

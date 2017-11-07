@@ -25,8 +25,10 @@ CREATE TABLE `Customers` (
 
 CREATE TABLE `Payment_methods` (
     `pay_method_id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    `customer_id` INTEGER NOT NULL,
     `payment_type` VARCHAR NOT NULL,
-    `account_number` INTEGER(16) NOT NULL
+    `account_number` INTEGER(16) NOT NULL,
+    FOREIGN KEY(`customer_id`) REFERENCES `Customers`(`customer_id`)
 );
 
 CREATE TABLE `Products` (
@@ -62,10 +64,10 @@ INSERT INTO Customers VALUES (null, 'Bob', 'Boberson', '1234 No Activity Ln.', '
 INSERT INTO Customers VALUES (null, 'Dave', 'Daverson', '500 Interstate Drive', 'Nashville', 'TN', 37222, 6152345678, '2017-01-01', 1);
 INSERT INTO Customers VALUES (null, 'Mr. Not', 'Active', '000 Not Active St.', 'Nowhere', 'AK', 23145, 1001001000, '2012-05-05', 0);
 
-INSERT INTO Payment_methods VALUES (null, 'Amex', 1234567891234567);
-INSERT INTO Payment_methods VALUES (null, 'Mastercard', 3434567891234567);
-INSERT INTO Payment_methods VALUES (null, 'Discover', 3434567891234567);
-INSERT INTO Payment_methods VALUES (null, 'Visa', 5434567891234567);
+INSERT INTO Payment_methods VALUES (null, 4, 'Amex', 1234567891234567);
+INSERT INTO Payment_methods VALUES (null, 3, 'Mastercard', 3434567891234567);
+INSERT INTO Payment_methods VALUES (null, 2, 'Discover', 3434567891234567);
+INSERT INTO Payment_methods VALUES (null, 1, 'Visa', 5434567891234567);
 
 INSERT INTO Products VALUES (null, 1, 'Baseball', 12.99, 'Round white orb used for sportsball', '2000-10-10');
 INSERT INTO Products VALUES (null, 2, 'Colander', 6.99, 'Keeps your spaghetti dry', '2017-09-09');
