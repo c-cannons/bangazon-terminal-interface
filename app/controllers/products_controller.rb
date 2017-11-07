@@ -34,33 +34,46 @@ class ProductsController
         @product.add_product(@active_customer, @product_name, @product_price, @product_desc)
     end
 
-    def add_to_cart
-      print "Choose an item: "
-      user_input = gets.chomp
-      @product_arr = @product.get_products
-      puts @product_arr.length
-      # p @product_arr
+    def show_products_by_customer(active_customer)
+      @product_arr = @product.get_products_by_customer(active_customer)
+      p @product_arr
+      count = 1
       @product_arr.each do |product|
-        if user_input == product[0].to_s
-          puts "You chose #{product[2]}"
-          puts "This product is $#{product[3]}. Would you like to add to your cart? (Y/N)"
-        end
+          puts "#{count}. #{product[2]} - $#{product[3]}: #{product[4]}"
+          count += 1
       end
-      next_user_input = gets.chomp
-      case next_user_input.downcase
-      when "y"
-      puts "Added to cart!"
-      when "n"
-        puts " "
-        puts "Something else maybe?"
-        get_all_products
+      puts " "
+      puts " "
+    end
+
+    def delete_customer_product
+      @product_arr = @product.get_products_by_customer(@active_customer[0])
+      puts "Choose an item to delete"
+      count = 1
+      @product_hash = Hash.new
+      @product_arr.each do |product|
+          puts "#{count}. #{product[2]}"
+          @product_hash[count] = product
+          count += 1
+      end
+
+      puts " "
+      user_input = gets.chomp
+      @product_hash.each do |key, val|
+        if user_input.to_s == key.to_s
+          puts "Do you want to delete #{val[2]}? (Y/N)"
+          next_user_input = gets.chomp
+          if next_user_input.downcase.to_s == "y"
+            @product.delete_product(@product_hash[key][0])
+          end
+        end
       end
     end
 
 
 end
 
-product_list = ProductsController.new
-product_list.get_all_products
-# product_list.add_product
-product_list.add_to_cart
+# product_list = ProductsController.new
+# product_list.get_all_products
+# # product_list.add_product
+# product_list.add_to_cart

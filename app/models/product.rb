@@ -13,9 +13,18 @@ class ProductModel
         return products_arr
     end
 
+    def get_products_by_customer(active_customer)
+        products_arr = @db.execute(
+          "SELECT product_id, customer_id, product_name, product_price, product_desc
+          FROM Products
+          WHERE customer_id = #{active_customer}")
+        # @db.close
+        return products_arr
+    end
+
     # Takes input from the user, assigns the input to local variables and inserts it into the Products table
-    def add_product(product_name, product_price, product_desc)
-        @db.execute("INSERT INTO Products VALUES (null, 5, '#{product_name}', '#{product_price}', '#{product_desc}', '#{Date.today}');")
+    def add_product(customer_id, product_name, product_price, product_desc)
+        @db.execute("INSERT INTO Products VALUES (NULL, #{customer_id}, '#{product_name}', '#{product_price}', '#{product_desc}', '#{Date.today}');")
         new_id = @db.last_insert_row_id
         added_product = @db.execute "SELECT * FROM Products WHERE product_id = #{new_id};"
         @db.close

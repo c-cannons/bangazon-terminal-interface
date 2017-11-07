@@ -117,6 +117,8 @@ class MainMenuController
         puts "Complete an order"
       when "5"
         puts "Remove customer product"
+        @delete = ProductsController.new(@active_customer)
+        @delete.delete_customer_product
       when "6"
         puts "Update product information"
       when "7"
