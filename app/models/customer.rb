@@ -38,6 +38,7 @@ class Customer
     @db.close
     return @customers
   end
+
   def delete_customer(id)
     @db.execute "DELETE FROM Customers WHERE customer_id = #{id};"
     @db.close
