@@ -107,10 +107,12 @@ class MainMenuController
         active_customer_menu
       when "2"
         puts "Add product to sell"
+        @products = ProductsController.new(@active_customer)
+        @products.add_product
       when "3"
         puts "Add product to shopping cart"
-        products = ProductsController.new(@active_customer[0])
-        products.get_all_products
+        @cart = ProductsController.new(@active_customer)
+        @cart.get_all_products
       when "4"
         puts "Complete an order"
       when "5"

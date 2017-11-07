@@ -5,7 +5,7 @@ class ProductsController
   attr_accessor :active_customer
 
     # Sets @product to an instance of the class ProductModel
-    def initialize
+    def initialize(active_customer)
         @active_customer = active_customer
         @product = ProductModel.new
     end
@@ -24,13 +24,14 @@ class ProductsController
 
     # References the `add_product` method of ProductModel. Takes user input and inserts it to the Products table
     def add_product
+      @active_customer = active_customer[0]
         puts "Name of product?"
         @product_name = gets.chomp
         puts "Price of Product?"
         @product_price = gets.chomp
         puts "Product description?"
         @product_desc = gets.chomp
-        @product.add_product(@product_name, @product_price, @product_desc)
+        @product.add_product(@active_customer, @product_name, @product_price, @product_desc)
     end
 
     def add_to_cart
