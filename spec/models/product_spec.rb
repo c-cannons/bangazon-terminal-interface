@@ -15,7 +15,6 @@ describe '.get_products' do
     end
 end
 
-
 describe ".add_product - integration" do
     context "when testing" do
         it "checks Products table for 'Shoes'" do
