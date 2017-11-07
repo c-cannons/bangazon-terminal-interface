@@ -124,7 +124,7 @@ class CustomerController
     #Loop Through Customer List and If User Input Matches Customer Id, set customer as Active Customer
     customer_list.each do |customer|
       if user_input == customer[0].to_s
-        puts "you chose #{customer[1]} #{customer[2]}"
+        puts "You chose #{customer[1]} #{customer[2]}"
         @active_customer = customer
         break
       end

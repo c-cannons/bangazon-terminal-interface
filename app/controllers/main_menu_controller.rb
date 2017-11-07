@@ -101,14 +101,23 @@ class MainMenuController
 
       case user_input
       when "1"
+        # Create New Payment Method
         @new_payment_method = PaymentMethodsController.new(@active_customer)
         @new_payment_method.add_payment_method
         puts""
         active_customer_menu
       when "2"
+        # Add Product to Sell
         puts "Add product to sell"
       when "3"
-        puts "Add product to shopping cart"
+        # Add Product to Shopping Cart
+        @shopping_cart = OrdersController.new(@active_customer)
+        @active_order = @shopping_cart.check_active_order
+        puts "active order no: #{@active_order}"
+        @products = ProductsController.new(@active_customer)
+        @products.get_all_products
+        @products.select_products_for_cart(@active_order)
+        active_customer_menu
       when "4"
         puts "Complete an order"
       when "5"

@@ -6,18 +6,76 @@ class ProductsController
     def initialize(active_customer)
         @active_customer = active_customer
         @product = ProductModel.new
+        @order_line = OrderLineModel.new
     end
 
     # References the `get_products` method of ProductModel. Pulls product details for all items in the Products table
     def get_all_products
-       products = @product.get_products
-        count = 1
-        products.each do |product| 
-            puts "#{count}. #{product[0]} - #{product[1]}: #{product[2]}"
-            count += 1
+      @products_arr = @product.get_products
+      display_products
+    end
+
+    def display_products
+      puts " "
+      puts "Product List:"
+      count = 1
+      @product_list_hash = Hash.new
+      @products_arr.each do |product|
+        puts "#{count}. #{product[1]}"
+        @product_list_hash[count] = product
+        count += 1
+      end
+      puts " "
+      puts "Type 'exit' to Exit Product List"
+    end
+
+    def select_products_for_cart(active_order_arg)
+      exit_to_main = false
+      active_order = active_order_arg
+      puts " "
+
+      user_input = gets.chomp
+      @product_list_hash.each do |key, val|
+        if user_input.downcase.to_s == 'exit'
+          puts " "
+          puts "heading back to menu"
+          exit_to_main = true
+          break
         end
+
+        if user_input.to_s == key.to_s
+          puts "Do you want to Add #{val[1]}? (y/n)"
+          puts " "
+          confirm_user_input = gets.chomp
+          if confirm_user_input.downcase.to_s == "y"
+            @order_line.add_order_line(@product_list_hash[key][0], active_order)
+            puts " "
+            puts "#{val[1]} was added to #{@active_customer[1]}'s Shopping Cart"
+            break
+          else
+            puts " "
+            puts "#{val[1]} was NOT added."
+            break
+          end
+        end
+
+      end
+
+
+      if exit_to_main == false
         puts " "
-        puts " "
+        puts "Do you want to continue shopping #{@active_customer[1]}? (y/n)"
+        confirm_user_input = gets.chomp
+        if confirm_user_input.downcase.to_s == 'y'
+          display_products
+          select_products_for_cart(active_order)
+        else
+          puts " "
+          puts "heading back to menu"
+        end
+      end
+
+      puts " "
     end
 
     # References the `add_product` method of ProductModel. Takes user input and inserts it to the Products table
@@ -31,38 +89,4 @@ class ProductsController
         @product.add_product(@product_name, @product_price, @product_desc)
     end
 
-    # References the `get_customers` method of ProductModel. Takes that data and prints each item to the terminal
-    # def list_customers
-    #     customers = @product.get_customers
-    #     customers.each do |customer| 
-    #        puts "#{customer[0]}. #{customer[1]} #{customer[2]}"
-    #     end
-
-    #     puts " "
-    #     puts "Choose from these #{customers.length} customers."
-    #     puts " "
-
-    #     user_input = gets.chomp
-
-    #     # If the user enters a number that's higher than the menu's length, return this statement and revert back to customer menu
-    #     if user_input.to_i > customers.length
-    #         puts " "
-    #         puts "That choice is not on the menu. Please choose a customer on the list."
-    #         puts " "
-    #         list_customers
-    #     else
-    #         # If the user input matches a customer ID, display the first name (customer[1]) and last_name (customer[2])
-    #         customers.each do |customer|
-    #             if user_input == customer[0].to_s
-    #                 puts " "
-    #                 puts "You chose #{customer[1]} #{customer[2]}"
-    #                 puts " "
-    #             end
-    #         end
-    #     end
-    # end
 end
-
-# product_list = ProductsController.new
-# product_list.get_all_products
-# product_list.add_product
