@@ -39,6 +39,7 @@ class ProductsController
       puts " "
 
       user_input = gets.chomp
+      # START LOOP
       @product_list_hash.each do |key, val|
         # Allows user to exit
         if user_input.downcase.to_s == 'exit'
@@ -63,8 +64,7 @@ class ProductsController
             break
           end
         end
-
-      end
+      end # END OF LOOP
 
       if exit_to_main == false
         puts " "
@@ -72,7 +72,7 @@ class ProductsController
         confirm_user_input = gets.chomp
         if confirm_user_input.downcase.to_s == 'y'
           display_products
-          # starts select` product loop again
+          # START Select Product LOOP AGAIN
           select_products_for_cart(active_order)
         else
           puts " "
@@ -158,13 +158,16 @@ class ProductsController
         if user_input.to_s == key.to_s
           @orders = @order_line.get_products_from_current_orders.flatten
           if @orders.include?(val[0])
+            puts " "
             puts "Can't delete #{val[2]} because it is in an active order."
             puts " "
           else
+            puts " "
             puts "Do you want to delete #{val[2]}? (Y/N)"
             next_user_input = gets.chomp
             case next_user_input.downcase.to_s
             when "y"
+              puts " "
               puts "#{@product_hash[key][2]} has been deleted!"
               @product.delete_product(@product_hash[key][0])
             when "n"
