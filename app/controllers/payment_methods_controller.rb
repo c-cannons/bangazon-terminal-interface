@@ -31,30 +31,6 @@ class PaymentMethodsController
         print "Added '#{added_method[0][2]}' Account#: #{added_method[0][3]} for Customer ID: #{added_method[0][1]}"
     end
 
-    def apply_payment_method
-      @product_arr = @product.get_products_by_customer(@active_customer[0])
-      puts "Choose an item to delete"
-      count = 1
-      @product_hash = Hash.new
-      @product_arr.each do |product|
-          puts "#{count}. #{product[2]}"
-          @product_hash[count] = product
-          count += 1
-      end
-      puts @product_hash
-      puts " "
-      user_input = gets.chomp
-      @product_hash.each do |key, val|
-        if user_input.to_s == key.to_s
-          puts "Do you want to delete #{val[2]}? (Y/N)"
-          next_user_input = gets.chomp
-          if next_user_input.downcase.to_s == "y"
-            @product.delete_product(@product_hash[key][0])
-          end
-        end
-      end
-    end
-
 end
 
 # pmc = PaymentMethodsController.new(1)
