@@ -120,6 +120,8 @@ class MainMenuController
         @delete.delete_customer_product
       when "6"
         puts "Update product information"
+        @update = ProductsController.new(@active_customer)
+        @update.update_product
       when "7"
         puts "Show stale products"
       when "8"
