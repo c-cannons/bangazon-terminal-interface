@@ -165,8 +165,13 @@ class ProductsController
             next_user_input = gets.chomp
             case next_user_input.downcase.to_s
             when "y"
+              puts " "
               puts "#{@product_hash[key][2]} has been deleted!"
+              puts " "
+              puts "Press any key to return to main menu."
+              puts " "
               @product.delete_product(@product_hash[key][0])
+              gets.chomp
             when "n"
               break
             end
