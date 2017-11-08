@@ -80,6 +80,7 @@ class MainMenuController
   #Active customer menu  -- pass @active_customer to any instance controller called from here
   def active_customer_menu
     loop do
+      puts " "
       puts "*************************************************"
       puts "HELLO #{@active_customer[1]}! What do you want to do?"
       puts "*************************************************"
@@ -138,8 +139,14 @@ class MainMenuController
       when "9"
         puts "Show overall product popularity - COMING SOON"
       when "10"
-        puts "Choose new Active Customer"
         @active_customer = []
+        puts ""
+        puts "Choose new Active Customer"
+        @customer = CustomerController.new
+        @customer.list_customers
+        @active_customer = @customer.active_customer
+        puts ""
+        active_customer_menu
         break
       when "11"
         # Log Out, Back to Main Menu!

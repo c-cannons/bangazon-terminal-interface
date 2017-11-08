@@ -160,13 +160,16 @@ class ProductsController
         if user_input.to_s == key.to_s
           @orders = @order_line.get_products_from_current_orders.flatten
           if @orders.include?(val[0])
+            puts " "
             puts "Can't delete #{val[2]} because it is in an active order."
             puts " "
           else
+            puts " "
             puts "Do you want to delete #{val[2]}? (Y/N)"
             next_user_input = gets.chomp
             case next_user_input.downcase.to_s
             when "y"
+              puts " "
               puts "#{@product_hash[key][2]} has been deleted!"
               @product.delete_product(@product_hash[key][0])
             when "n"
