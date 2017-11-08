@@ -1,6 +1,6 @@
 require_relative "../../app/models/customer"
 
-describe Customer do
+describe "Customer Model" do
 
   def setup
     @customer = Customer.new

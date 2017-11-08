@@ -3,7 +3,7 @@ require_relative "../models/order_line"
 
 class ProductsController
 
-  attr_accessor :active_customer
+  attr_accessor :active_customer, :product, :order_line
 
     # Sets @product to an instance of the class ProductModel
     def initialize(active_customer)

@@ -6,7 +6,7 @@ end
 # variables that will store id integers of the example entries so they can be idetified and deleted
 test_id_1 = 0
 
-describe "list_all_payment_methods" do
+describe ".list_all_payment_methods" do
   context 'when called' do
     it "returns a type of Array from the database" do
       setup
@@ -38,7 +38,7 @@ describe "checks for test record" do
   end
 end
 
-describe "add_payment_method" do
+describe ".add_payment_method" do
   context "when called" do
     it "adds a product and verifies the field types and values" do
       setup
