@@ -1,13 +1,13 @@
 require_relative "../../app/models/order.rb"
 
-describe OrderModel do
+describe "Order Model" do
 
-  describe "#retrieve_customer_orders" do
+  describe ".retrieve_customer_orders" do
     context "when user chooses active customer" do
       it "retrieves all orders belonging to the active customer" do
         order = OrderModel.new
         all_customer_orders = order.retrieve_customer_orders(1)
-        p all_customer_orders
+        # p all_customer_orders
           expect(all_customer_orders).to be_an(Array)
           expect(all_customer_orders[0][1]).to eql(1)
       end
@@ -15,12 +15,12 @@ describe OrderModel do
   end
 
 
-  describe "#retrieve_active_order" do
+  describe ".retrieve_active_order" do
     context "when user chooses active customer" do
       it "retrieves the customer's active order" do
         order = OrderModel.new
-        active_customer_order = order.retrieve_active_order(2)
-        p active_customer_order
+        active_customer_order = order.retrieve_active_order(1)
+        # p active_customer_order
           expect(active_customer_order).to be_an(Array)
           expect(active_customer_order[0][2]).to eql(nil)
       end
@@ -28,15 +28,15 @@ describe OrderModel do
   end
 
 
-  describe "#new_order" do
-    context "when new_order function triggered" do
+  describe ".new_order" do
+    context "when called" do
       it "adds a new order, with inputs active customer and date" do
         order = OrderModel.new
         the_new_order_id = order.new_order(3)
-        p the_new_order_id
+        # p the_new_order_id
         @db = SQLite3::Database.open(ENV["BANGAZONTI"])
         check_for_new_order = @db.execute("SELECT * FROM Orders WHERE order_id = #{the_new_order_id}")
-        p check_for_new_order
+        # p check_for_new_order
           expect(the_new_order_id).to be_an(Integer)
           expect(check_for_new_order.flatten[1]).to be_an(Integer) #checks customer_id
           expect(check_for_new_order.flatten[2]).to eql(nil) #checks pay_method_id
@@ -46,22 +46,17 @@ describe OrderModel do
   end
 
 
-  describe "#close_order" do
-    context "when close_order function triggered" do
+  describe ".close_order" do
+    context "when called" do
       it "adds payment id to the current order" do
         order = OrderModel.new
-        order.close_order(4, 17)
+        order.close_order(4, 2)
         @db = SQLite3::Database.open(ENV["BANGAZONTI"])
-        check_for_closed_order = @db.execute("SELECT * FROM Orders WHERE order_id = 17")
-        p check_for_closed_order
-          expect(check_for_closed_order.flatten[1]).to be_an(Integer) #checks customer_id
-          expect(check_for_closed_order.flatten[2]).to be_an(Integer) #checks pay_method_id
+        check_for_closed_order = @db.execute("SELECT * FROM Orders WHERE order_id = 2")
+        expect(check_for_closed_order.flatten[1]).to be_an(Integer) #checks customer_id
+        expect(check_for_closed_order.flatten[2]).to be_an(Integer) #checks pay_method_id
       end
     end
   end
-
-
-
-
 
 end

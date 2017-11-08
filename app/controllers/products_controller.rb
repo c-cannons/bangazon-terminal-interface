@@ -3,7 +3,7 @@ require_relative "../models/order_line"
 
 class ProductsController
 
-  attr_accessor :active_customer
+  attr_accessor :active_customer, :product, :order_line
 
     # Sets @product to an instance of the class ProductModel
     def initialize(active_customer)
@@ -118,12 +118,11 @@ class ProductsController
         if user_input.downcase.to_s == 'exit'
           puts " "
           puts "Heading back to menu"
-          exit_to_main = true
+          exit_update = true
           break
         end
         #logic to update products
         if user_input.to_s == key.to_s
-            # puts key.to_s
             @product_id = val[0]
             puts "The current Product Name is '#{val[2]}'.  What would you like the new Product Name to be?"
             @product_name = gets.chomp
@@ -133,14 +132,13 @@ class ProductsController
             @product_desc = gets.chomp
             #calls the database transaction
             @product.update_product(@product_id, @active_customer, @product_name, @product_price.to_f, @product_desc)
-            update_product
         end
-        if exit_to_main == false
+      end
+        if exit_update == false
           puts "Invalid command, please select a product or type 'exit' to exit."
           puts ""
           update_product
         end
-      end
     end
 
     def delete_customer_product

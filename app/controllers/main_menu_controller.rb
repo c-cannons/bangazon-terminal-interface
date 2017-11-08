@@ -118,12 +118,10 @@ class MainMenuController
         @products.get_all_products
         @products.select_products_for_cart(@active_order)
       when "4"
-        puts "Complete an order"
         # Complete An Order
+        puts "Complete an order"
         @close = OrdersController.new(@active_customer)
-        @active_order = @close.check_active_order
-        # @close.get_grand_total(@active_order)
-
+        @close.complete_order
       when "5"
         puts "Remove customer product"
         @delete = ProductsController.new(@active_customer)
