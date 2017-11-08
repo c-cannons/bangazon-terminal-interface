@@ -169,7 +169,11 @@ class ProductsController
             when "y"
               puts " "
               puts "#{@product_hash[key][2]} has been deleted!"
+              puts " "
+              puts "Press any key to return to main menu."
+              puts " "
               @product.delete_product(@product_hash[key][0])
+              gets.chomp
             when "n"
               break
             end
