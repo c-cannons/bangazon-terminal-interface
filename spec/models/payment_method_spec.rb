@@ -1,4 +1,4 @@
-require './app/models/payment_method.rb'
+require_relative '../../app/models/payment_method.rb'
 
 def setup
   @pm = PaymentMethod.new
@@ -12,6 +12,18 @@ describe ".list_all_payment_methods" do
       setup
       pay_array = @pm.list_all_payment_methods
       expect(pay_array).to be_an(Array)
+    end
+  end
+end
+
+describe "get_payment_methods_by_customer_id" do
+  context 'when called' do
+    it "returns an Array from the database containing customer payment methods, if any" do
+      setup
+      pay_array_by_customer = @pm.get_payment_methods_by_customer_id(@customer_id = 4)
+      puts "pay_array_by_customer: #{pay_array_by_customer}"
+      expect(pay_array_by_customer).to be_an(Array)
+      expect(pay_array_by_customer[0][1]).to eql(4)
     end
   end
 end
@@ -54,7 +66,7 @@ describe "confirms that test record was added" do
 end
 
 describe "delete test entry" do
-    context "after test is comlplete"do
+    context "after test is complete" do
         it "successfully removes the test entry" do
             setup
             @pm.delete_pay_method(test_id_1)

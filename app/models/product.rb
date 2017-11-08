@@ -35,14 +35,14 @@ class ProductModel
         @db.execute("INSERT INTO Products VALUES (NULL, #{customer_id}, '#{product_name}', '#{product_price}', '#{product_desc}', '#{Date.today}');")
         new_id = @db.last_insert_row_id
         added_product = @db.execute "SELECT * FROM Products WHERE product_id = #{new_id};"
-        @db.close
+        # @db.close
         return added_product
     end
     # updates an existing product
     def update_product(product_id, customer_id, product_name, product_price, product_desc)
         @db.execute("UPDATE Products SET product_name = '#{product_name}', product_price = #{product_price}, product_desc = '#{product_desc}' WHERE product_id = #{product_id};")
         updated_product = @db.execute "SELECT * FROM Products WHERE product_id = #{product_id};"
-        @db.close
+        # @db.close
         return updated_product
     end
     #delete product by product_id

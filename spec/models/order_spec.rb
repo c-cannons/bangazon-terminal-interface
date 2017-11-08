@@ -53,9 +53,8 @@ describe "Order Model" do
         order.close_order(4, 2)
         @db = SQLite3::Database.open(ENV["BANGAZONTI"])
         check_for_closed_order = @db.execute("SELECT * FROM Orders WHERE order_id = 2")
-        # p check_for_closed_order
-          expect(check_for_closed_order.flatten[1]).to be_an(Integer) #checks customer_id
-          expect(check_for_closed_order.flatten[2]).to be_an(Integer) #checks pay_method_id
+        expect(check_for_closed_order.flatten[1]).to be_an(Integer) #checks customer_id
+        expect(check_for_closed_order.flatten[2]).to be_an(Integer) #checks pay_method_id
       end
     end
   end
