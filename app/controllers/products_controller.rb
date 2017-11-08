@@ -131,11 +131,6 @@ class ProductsController
       end
     end
 
-    def check_current_orders
-      @orders = @order_line.get_products_from_current_orders.flatten
-      return @orders
-    end
-
     def delete_customer_product
       @product_arr = @product.get_products_by_customer(@active_customer[0])
       puts "Choose an item to delete"
