@@ -107,6 +107,8 @@ class MainMenuController
       when "2"
         # Add Product to Sell
         puts "Add product to sell"
+        @products = ProductsController.new(@active_customer)
+        @products.add_product
       when "3"
         # Add Product to Shopping Cart
         @shopping_cart = OrdersController.new(@active_customer)
@@ -123,8 +125,12 @@ class MainMenuController
 
       when "5"
         puts "Remove customer product"
+        @delete = ProductsController.new(@active_customer)
+        @delete.delete_customer_product
       when "6"
         puts "Update product information"
+        @update = ProductsController.new(@active_customer)
+        @update.update_product
       when "7"
         puts "Show stale products - COMING SOON"
       when "8"
