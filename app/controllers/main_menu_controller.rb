@@ -4,7 +4,7 @@ require_relative 'payment_methods_controller'
 class MainMenuController
 
   # :active_customer is an array [customer_id, first_name, last_name]
-  attr_accessor :active_customer
+  attr_accessor :active_customer, :active_order
 
   def display_main_menu
     loop do
@@ -63,7 +63,6 @@ class MainMenuController
         @customer.add_new_customer
         puts "*************************************************"
         puts ""
-        display_main_menu
       when "2"
         # User gets prompted to select an Active Customer, then displays active customer menu
         @customer = CustomerController.new
@@ -90,9 +89,9 @@ class MainMenuController
       puts "4. Complete an order"
       puts "5. Remove customer product"
       puts "6. Update product information"
-      puts "7. Show stale products"
-      puts "8. Show customer revenue report"
-      puts "9. Show overall product popularity"
+      puts "7. Show stale products - COMING SOON"
+      puts "8. Show customer revenue report - COMING SOON"
+      puts "9. Show overall product popularity - COMING SOON"
       puts "10. Choose new Active Customer"
       puts "11. Log Out, Back to Main Menu!"
       puts "> "
@@ -101,34 +100,48 @@ class MainMenuController
 
       case user_input
       when "1"
+        # Create New Payment Method
         @new_payment_method = PaymentMethodsController.new(@active_customer)
         @new_payment_method.add_payment_method
         puts""
-        active_customer_menu
       when "2"
+        # Add Product to Sell
         puts "Add product to sell"
         @products = ProductsController.new(@active_customer)
         @products.add_product
       when "3"
-        puts "Add product to shopping cart"
-        @cart = ProductsController.new(@active_customer)
-        @cart.get_all_products
+        # Add Product to Shopping Cart
+        @shopping_cart = OrdersController.new(@active_customer)
+        @active_order = @shopping_cart.check_active_order
+        @products = ProductsController.new(@active_customer)
+        @products.get_all_products
+        @products.select_products_for_cart(@active_order)
       when "4"
         puts "Complete an order"
+
+        # @close = OrdersController.new(@active_customer)
+        # @close.close_order
+
+        # Complete An Order
         @close = OrdersController.new(@active_customer)
-        @close.close_order
+        @active_order = @close.check_active_order
+        # @close.get_grand_total(@active_order)
+
+
       when "5"
         puts "Remove customer product"
         @delete = ProductsController.new(@active_customer)
         @delete.delete_customer_product
       when "6"
         puts "Update product information"
+        @update = ProductsController.new(@active_customer)
+        @update.update_product
       when "7"
-        puts "Show stale products"
+        puts "Show stale products - COMING SOON"
       when "8"
-        puts "Show customer revenue report"
+        puts "Show customer revenue report - COMING SOON"
       when "9"
-        puts "Show overall product popularity"
+        puts "Show overall product popularity - COMING SOON"
       when "10"
         puts "Choose new Active Customer"
         @active_customer = []
