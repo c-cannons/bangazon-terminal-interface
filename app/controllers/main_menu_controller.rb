@@ -63,7 +63,6 @@ class MainMenuController
         @customer.add_new_customer
         puts "*************************************************"
         puts ""
-        display_main_menu
       when "2"
         # User gets prompted to select an Active Customer, then displays active customer menu
         @customer = CustomerController.new
@@ -104,7 +103,7 @@ class MainMenuController
         @new_payment_method = PaymentMethodsController.new(@active_customer)
         @new_payment_method.add_payment_method
         puts""
-        active_customer_menu
+        # active_customer_menu
       when "2"
         puts "Add product to sell"
         @products = ProductsController.new(@active_customer)
