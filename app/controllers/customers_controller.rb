@@ -1,6 +1,7 @@
 class CustomerController
   attr_accessor :first_name, :last_name, :street_address, :city, :state, :postal_code, :phone_number
 
+  # Gets User input for all fields
   def add_new_customer
     begin
       puts "*************************************************"
@@ -19,22 +20,22 @@ class CustomerController
       puts ">"
       user_input = gets.chomp
       @street_address = user_input
-      
+
       puts "Enter City"
       puts ">"
       user_input = gets.chomp
       @city = user_input
-      
+
       puts "Enter State (use state abbreviation)"
       puts ">"
       user_input = gets.chomp
       @state = user_input
-      
+
       puts "Enter Postal Code"
       puts ">"
       user_input = Integer(gets.chomp)
       @postal_code = user_input
-      
+
       puts "Enter Phone Number"
       puts ">"
       user_input = Integer(gets.chomp)
@@ -56,6 +57,7 @@ class CustomerController
     end
   end
 
+  # Edit User Input Before Pushing to DB
   def edit_customer
     begin
       puts "*************************************************"
@@ -77,25 +79,25 @@ class CustomerController
       puts ">"
       user_input = gets.chomp
       @street_address = user_input
-      
+
       puts "Edit City"
       puts "#{@city}"
       puts ">"
       user_input = gets.chomp
       @city = user_input
-      
+
       puts "Edit State (use state abbreviation)"
       puts "#{@state}"
       puts ">"
       user_input = gets.chomp
       @state = user_input
-      
+
       puts "Edit Postal Code"
       puts "#{@postal_code}"
       puts ">"
       user_input = Integer(gets.chomp)
       @postal_code = user_input
-      
+
       puts "Edit Phone Number"
       puts "#{@phone_number}"
       puts ">"
@@ -117,6 +119,7 @@ class CustomerController
     end
   end
 
+  # List all Customers in Array
   def list_customers
     puts "*************************************************"
     puts "SELECT CUSTOMER"
@@ -130,7 +133,7 @@ class CustomerController
     #Loop Through Customer List and If User Input Matches Customer Id, set customer as Active Customer
     customer_list.each do |customer|
       if user_input == customer[0].to_s
-        puts "you chose #{customer[1]} #{customer[2]}"
+        puts "You chose #{customer[1]} #{customer[2]}"
         @active_customer = customer
         break
       end
@@ -146,9 +149,10 @@ class CustomerController
       end
     end
   end
+
   #Allows for MainMenuController to call for @active_customer at any time
   def active_customer
     @active_customer
   end
-  
+
 end
