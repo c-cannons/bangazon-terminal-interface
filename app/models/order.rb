@@ -15,7 +15,7 @@ class OrderModel
   # function to retrieve order_id of the active customer's active order
   def retrieve_active_order(customer_id)
     @active_order_id = @db.execute("SELECT order_id FROM Orders WHERE pay_method_id IS NULL AND customer_id = #{customer_id}")
-    puts "retrieve Active order method return: #{@active_order_id}"
+    # puts "retrieve Active order method return: #{@active_order_id}"
     return @active_order_id
   end
 
