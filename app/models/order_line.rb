@@ -37,5 +37,11 @@ class OrderLineModel
     return @order_lines_by_product_id
   end
 
+  # function to get total cost of all items in order by order_id
+  def get_grand_total_by_order_id(order_id)
+    @grand_total_by_order_id = @db.execute("SELECT Order_details.order_id, SUM(Products.product_price) FROM Order_details LEFT JOIN Products ON Order_details.product_id == Products.product_id WHERE order_id = #{order_id};")
+    return @grand_total_by_order_id
+  end
+
 end
 
