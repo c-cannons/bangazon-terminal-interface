@@ -44,7 +44,9 @@ class ProductsController
           @product_hash[count] = product
           count += 1
       end
-      puts " "
+      puts ""
+      puts "Select a product or press Return to exit."
+      puts ">"
       #user enters an integer that matched a has key
       user_input = gets.chomp
       #iterated through the hash and asks about each updatable field.
