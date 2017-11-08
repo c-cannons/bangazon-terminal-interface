@@ -95,7 +95,7 @@ describe "Order Line Model" do
     context "when order lines searched by order id when order doesn't exist" do
       it "returns nil for both the order number and the total cost" do
         order_lines = OrderLineModel.new
-        grand_total_by_order_id = order_lines.get_grand_total_by_order_id(@order_id = 4)
+        grand_total_by_order_id = order_lines.get_grand_total_by_order_id(@order_id = 0)
         grand_total_by_order_id = grand_total_by_order_id.flatten
         p grand_total_by_order_id
         expect(grand_total_by_order_id[0]).to be(nil)
