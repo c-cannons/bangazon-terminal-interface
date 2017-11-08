@@ -31,6 +31,15 @@ class OrderLineModel
     return @order_lines_by_order_id
   end
 
+  # function to retrieve all product_id's from current active orders
+  def get_products_from_current_orders
+    @db.execute("
+    SELECT product_id
+    FROM Order_details
+	  JOIN Orders ON  Order_details.order_id = Orders.order_id
+	  WHERE Orders.pay_method_id IS null")
+  end
+
   # function to retrieve all order lines in the database for a particular product
   def get_order_lines_by_product_id(product_id)
     @order_lines_by_product_id = @db.execute("SELECT * FROM Order_details WHERE product_id = #{product_id}")
