@@ -71,7 +71,7 @@ class ProductsController
         confirm_user_input = gets.chomp
         if confirm_user_input.downcase.to_s == 'y'
           display_products
-          # starts select product loop again
+          # starts select` product loop again
           select_products_for_cart(active_order)
         else
           puts " "
@@ -94,6 +94,7 @@ class ProductsController
     end
     #logic to change product information
     def update_product
+      exit_update = false
       @product_arr = @product.get_products_by_customer(@active_customer[0])
       puts "Which item would you like to update?"
       #loop puts a list of products associated with the customer
@@ -105,15 +106,23 @@ class ProductsController
           @product_hash[count] = product
           count += 1
       end
+      # puts @product_hash
       puts ""
-      puts "Select a product or press Return to exit."
+      puts "Select a product or type 'exit' to exit."
       puts ">"
       #user enters an integer that matched a has key
       user_input = gets.chomp
       #iterated through the hash and asks about each updatable field.
       @product_hash.each do |key, val|
+        if user_input.downcase.to_s == 'exit'
+          puts " "
+          puts "Heading back to menu"
+          exit_to_main = true
+          break
+        end
+        #logic to update products
         if user_input.to_s == key.to_s
-            # puts val
+            # puts key.to_s
             @product_id = val[0]
             puts "The current Product Name is '#{val[2]}'.  What would you like the new Product Name to be?"
             @product_name = gets.chomp
@@ -123,9 +132,12 @@ class ProductsController
             @product_desc = gets.chomp
             #calls the database transaction
             @product.update_product(@product_id, @active_customer, @product_name, @product_price.to_f, @product_desc)
-          # end
-        else
-          break
+            update_product
+        end
+        if exit_to_main == false
+          puts "Invalid command, please select a product or type 'exit' to exit."
+          puts ""
+          update_product
         end
       end
     end
