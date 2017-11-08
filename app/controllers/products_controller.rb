@@ -23,7 +23,7 @@ class ProductsController
       count = 1
       @product_list_hash = Hash.new
       @products_arr.each do |product|
-        puts "#{count}. #{product[1]}"
+        puts "#{count}. #{product[2]}"
         @product_list_hash[count] = product
         count += 1
       end
@@ -48,17 +48,17 @@ class ProductsController
         end
 
         if user_input.to_s == key.to_s
-          puts "Do you want to Add #{val[1]}? (y/n)"
+          puts "Do you want to Add #{val[2]}? (y/n)"
           puts " "
           confirm_user_input = gets.chomp
           if confirm_user_input.downcase.to_s == "y"
             @order_line.add_order_line(@product_list_hash[key][0], active_order)
             puts " "
-            puts "#{val[1]} was added to #{@active_customer[1]}'s Shopping Cart"
+            puts "#{val[2]} was added to #{@active_customer[1]}'s Shopping Cart"
             break
           else
             puts " "
-            puts "#{val[1]} was NOT added."
+            puts "#{val[2]} was NOT added."
             break
           end
         end
