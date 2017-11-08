@@ -1,4 +1,5 @@
 require_relative "../models/product"
+require_relative "../models/order_line"
 
 class ProductsController
 
@@ -141,7 +142,7 @@ class ProductsController
         end
       end
     end
-    
+
     def delete_customer_product
       @product_arr = @product.get_products_by_customer(@active_customer[0])
       puts "Choose an item to delete"
@@ -157,13 +158,26 @@ class ProductsController
       user_input = gets.chomp
       @product_hash.each do |key, val|
         if user_input.to_s == key.to_s
-          puts "Do you want to delete #{val[2]}? (Y/N)"
-          next_user_input = gets.chomp
-          if next_user_input.downcase.to_s == "y"
-            @product.delete_product(@product_hash[key][0])
+          @orders = @order_line.get_products_from_current_orders.flatten
+          if @orders.include?(val[0])
+            puts "Can't delete #{val[2]} because it is in an active order."
+            puts " "
+          else
+            puts "Do you want to delete #{val[2]}? (Y/N)"
+            next_user_input = gets.chomp
+            case next_user_input.downcase.to_s
+            when "y"
+              puts "#{@product_hash[key][2]} has been deleted!"
+              @product.delete_product(@product_hash[key][0])
+            when "n"
+              break
+            end
           end
         end
       end
     end
 
 end
+
+# order = ProductsController.new(1)
+# p order.check_current_orders
