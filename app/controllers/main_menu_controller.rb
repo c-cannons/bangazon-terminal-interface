@@ -63,7 +63,6 @@ class MainMenuController
         @customer.add_new_customer
         puts "*************************************************"
         puts ""
-        display_main_menu
       when "2"
         # User gets prompted to select an Active Customer, then displays active customer menu
         @customer = CustomerController.new
@@ -105,7 +104,6 @@ class MainMenuController
         @new_payment_method = PaymentMethodsController.new(@active_customer)
         @new_payment_method.add_payment_method
         puts""
-        active_customer_menu
       when "2"
         # Add Product to Sell
         puts "Add product to sell"
@@ -113,13 +111,16 @@ class MainMenuController
         # Add Product to Shopping Cart
         @shopping_cart = OrdersController.new(@active_customer)
         @active_order = @shopping_cart.check_active_order
-        puts "active order no: #{@active_order}"
         @products = ProductsController.new(@active_customer)
         @products.get_all_products
         @products.select_products_for_cart(@active_order)
-        active_customer_menu
       when "4"
         puts "Complete an order"
+        # Complete An Order
+        @close = OrdersController.new(@active_customer)
+        @active_order = @close.check_active_order
+        # @close.get_grand_total(@active_order)
+
       when "5"
         puts "Remove customer product"
       when "6"

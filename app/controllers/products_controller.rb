@@ -15,6 +15,7 @@ class ProductsController
       display_products
     end
 
+    #Displays products in @products_arr from get_all_products method
     def display_products
       puts " "
       puts "Product List:"
@@ -29,6 +30,7 @@ class ProductsController
       puts "Type 'exit' to Exit Product List"
     end
 
+    # Gets active customer input to select products and creates an orderline for selected products
     def select_products_for_cart(active_order_arg)
       exit_to_main = false
       active_order = active_order_arg
@@ -36,6 +38,7 @@ class ProductsController
 
       user_input = gets.chomp
       @product_list_hash.each do |key, val|
+        # Allows user to exit
         if user_input.downcase.to_s == 'exit'
           puts " "
           puts "heading back to menu"
@@ -61,13 +64,13 @@ class ProductsController
 
       end
 
-
       if exit_to_main == false
         puts " "
         puts "Do you want to continue shopping #{@active_customer[1]}? (y/n)"
         confirm_user_input = gets.chomp
         if confirm_user_input.downcase.to_s == 'y'
           display_products
+          # starts select product loop again
           select_products_for_cart(active_order)
         else
           puts " "
