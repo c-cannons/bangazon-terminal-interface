@@ -29,7 +29,7 @@ describe "Products Controller" do
       it "explains that product cannot be deleted and returns to previous menu" do
         @products = ProductsController.new(@active_customer = 1)
         @orders = @products.order_line.get_products_from_current_orders.flatten
-        expect(@orders).to include(5)
+        expect(@orders).to include(1)
       end
     end
     context "if the product is not in an order" do
