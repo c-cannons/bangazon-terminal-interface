@@ -10,6 +10,10 @@
   2. If using zshell, open `.zshrc` file and add `export BANGAZONTI="[complete path to database]"` with the complete path to database file
   2. run `source ~/.zhsrc` to update zshell
 
+* To seed database:
+1. Execute the commands in the `bang_cli_db_setup.sql` file in DB Browser
+1. Write Changes
+
 #### To run the test suite
 * Run `bundle exec rspec`
 
