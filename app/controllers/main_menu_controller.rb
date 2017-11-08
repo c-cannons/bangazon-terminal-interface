@@ -83,7 +83,7 @@ class MainMenuController
       puts "*************************************************"
       puts "HELLO #{@active_customer[1]}! What do you want to do?"
       puts "*************************************************"
-      puts "1. Create a payment option"
+      puts "1. Add a payment method"
       puts "2. Add product to sell"
       puts "3. Add product to shopping cart"
       puts "4. Complete an order"

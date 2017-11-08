@@ -66,7 +66,7 @@ describe "confirms that test record was added" do
 end
 
 describe "delete test entry" do
-    context "after test is comlplete"do
+    context "after test is complete" do
         it "successfully removes the test entry" do
             setup
             @pm.delete_pay_method(test_id_1)

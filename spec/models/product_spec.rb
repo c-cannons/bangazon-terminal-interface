@@ -60,9 +60,9 @@ describe ".add_product - unit" do
         end
     end
 end
-
-describe "update_product" do
-    context "when called" do
+#test suite to for the update_product functionality
+describe "add record to test update_product" do
+    context "before the update_product test begins" do
         it "adds a record to be updated during the test" do
             product = ProductModel.new
             new_product = product.add_product(@customer_id = 1, @product_name = 'Morphine',  @product_price = 299.99, @product_desc = 'The good stuff.')
@@ -79,7 +79,11 @@ describe "update_product" do
             expect(new_product.flatten).to include(299.99)
             expect(new_product.flatten).to include("The good stuff.")
         end
-
+    end
+end
+        
+describe "update_product" do
+    context "when called" do
         it "updates the new test record successfully" do
             product = ProductModel.new
             updated_product = product.update_product(id_3, @customer_id = 2, @product_name = 'Vicodin',  @product_price = 888.88, @product_desc = 'The BAD stuff.')
@@ -92,12 +96,14 @@ describe "update_product" do
             expect(updated_product.flatten).to include(888.88)
             expect(updated_product.flatten).to include("The BAD stuff.")
         end
+    end
+end
 
+describe "delete update_product test record" do
+    context "when executed" do
         it "deletes test product from table" do
             product = ProductModel.new
             product.delete_product(id_3)
         end
-
     end
 end
-
