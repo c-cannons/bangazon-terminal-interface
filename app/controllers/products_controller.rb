@@ -38,6 +38,7 @@ class ProductsController
       puts " "
 
       user_input = gets.chomp
+      # START LOOP
       @product_list_hash.each do |key, val|
         # Allows user to exit
         if user_input.downcase.to_s == 'exit'
@@ -62,8 +63,7 @@ class ProductsController
             break
           end
         end
-
-      end
+      end # END OF LOOP
 
       if exit_to_main == false
         puts " "
@@ -71,7 +71,7 @@ class ProductsController
         confirm_user_input = gets.chomp
         if confirm_user_input.downcase.to_s == 'y'
           display_products
-          # starts select product loop again
+          # START Select Product LOOP AGAIN
           select_products_for_cart(active_order)
         else
           puts " "
@@ -129,7 +129,7 @@ class ProductsController
         end
       end
     end
-    
+
     def delete_customer_product
       @product_arr = @product.get_products_by_customer(@active_customer[0])
       puts "Choose an item to delete"
